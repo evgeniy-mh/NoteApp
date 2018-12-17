@@ -1,0 +1,19 @@
+<!-- <h2>
+  {{note.name}}
+</h2>
+<div>
+  <span>id:</span>
+  {{note.id}}
+</div>
+<div>
+  <span>id:</span>
+  {{note.content}}
+</div> -->
+
+
+<h2>My Notes</h2>
+<ul class="notes">
+  <li *ngFor="let note of notes">
+    <span class="badge">ID: {{note.id}}</span> {{note.name}}
+  </li>
+</ul>
