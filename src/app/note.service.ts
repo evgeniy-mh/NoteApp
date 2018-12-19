@@ -13,6 +13,6 @@ export class NoteService {
   //getNotes(): Observable<Note[]> { return of(Notes); }
 
   getNotes(): Observable<Note[]> {
-    return this.http.get<Note[]>('/NotesJSON.php');
+    return this.http.get<Note[]>('/api/NotesJSONloc.php');
   }
 }
