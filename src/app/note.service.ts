@@ -19,7 +19,7 @@ export class NoteService {
   // getNotes(): Observable<Note[]> { return of(Notes); }
 
   getNotes(): Observable<Note[]> {
-    return this.http.get<Note[]>(this.notesApi + '/notes.php');
+    return this.http.get<Note[]>(this.notesApi + '/get_notes.php');
   }
 
   addNote(note: Note): Observable<number> {
