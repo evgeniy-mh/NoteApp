@@ -1,7 +1,5 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
+require 'server_params.php';
 
 try {
     $conn = new PDO("mysql:host=$servername;dbname=NotesDB", $username, $password);
@@ -17,6 +15,7 @@ $stmt = $conn->prepare("SELECT * FROM Notes");
     }
 catch(PDOException $e)
     {
+    http_response_code(500);
     echo "Error: " . $e->getMessage();
     }
     $conn = null;

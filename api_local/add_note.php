@@ -1,9 +1,7 @@
 <?php
-$data = json_decode(file_get_contents('php://input'), true);
-$servername = "localhost";
-$username = "root";
-$password = "";
+require 'server_params.php';
 
+$data = json_decode(file_get_contents('php://input'), true);
 if(array_key_exists('idUser',$data) && array_key_exists('noteName',$data)){
         $idUser=$data["idUser"];
         $noteName=$data["noteName"];
@@ -28,15 +26,18 @@ if(array_key_exists('idUser',$data) && array_key_exists('noteName',$data)){
                 $stmt->execute();
                 
                 $last_id = $conn->lastInsertId();
-                $responceJSON=json_encode(array("last_id"=>$last_id));
-                echo($responceJSON);           
+                //$responceJSON=json_encode(array("last_id"=>$last_id));
+                //echo($responceJSON);     
+                echo($last_id);
                 }
         catch(PDOException $e)
         {
+                http_response_code(500);
                 echo "Error: " . $e->getMessage();
         }
         $conn = null;
 }else{        
+        http_response_code(500);
         echo("error");
 }
 ?>
