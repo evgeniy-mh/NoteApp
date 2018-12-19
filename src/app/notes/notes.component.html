@@ -17,3 +17,14 @@
     <span class="badge">ID: {{note.idNote}}</span> {{note.noteName}}
   </li>
 </ul>
+
+
+<div>
+  <label>name:
+    <input [(ngModel)]="note.noteName" placeholder="name">
+  </label>
+  <label>content:
+    <input [(ngModel)]="note.noteContent" placeholder="content">
+  </label>
+  <button (click)="addNote()">Add new note</button>
+</div>

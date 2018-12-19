@@ -10,14 +10,24 @@ import {Note} from '../note';
 export class NotesComponent implements OnInit {
   notes: Note[];
 
+  note: Note = new Note();
+
   constructor(private noteService: NoteService) {}
 
   ngOnInit() { this.getNotes(); }
 
-  getNotes(): void {
-    this.noteService.getNotes().subscribe(notes => {
-      this.notes = notes;
-      console.log(this.notes);
+  addNote(): void {
+    this.note.noteDate = new Date(Date.now());
+    console.log(this.note);
+    this.noteService.addNote(this.note).subscribe(newNoteId => {
+      this.note.idNote = newNoteId;
+      console.log(this.note);
+      this.notes.push(this.note);
+      this.note = new Note();
     });
+  }
+
+  getNotes(): void {
+    this.noteService.getNotes().subscribe(notes => { this.notes = notes; });
   }
 }
