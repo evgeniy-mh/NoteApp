@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-sm">
+    <h2>Мои заметки</h2>
+
+    <div class="list-group">
+      <!-- <a *ngFor="let note of notes" href="#" class="list-group-item list-group-item-action">
+          <span class="badge">ID: {{note.idNote}}</span> {{note.noteName}}
+        </a> -->
+
+      <app-note *ngFor="let current_note of notes" [note]="current_note" (deleteRequest)="deleteNoteRequest($event)"></app-note>
+
+    </div>
+
+  </div>
+  <div class="col-sm order-first">
+    <h2>Создать заметку</h2>
+    <div class="input-group mb-3">
+      <input [(ngModel)]="note.noteName" type="text" class="form-control" placeholder="Название заметки">
+      <div class="input-group-append">
+        <button (click)="addNote()" class="btn btn-outline-secondary" type="button">Создать</button>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <textarea [(ngModel)]="note.noteContent" class="form-control" placeholder="Содержание заметки" rows="3"></textarea>
+    </div>
+
+  </div>
+</div>
