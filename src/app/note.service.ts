@@ -10,6 +10,13 @@ import {
 import {map, catchError} from 'rxjs/operators';
 import {Note} from './note';
 
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json'  //,
+    //'Authorization': 'my-auth-token'
+  })
+};
+
 @Injectable({providedIn: 'root'})
 export class NoteService {
   notesApi = '/api_local';
@@ -23,15 +30,14 @@ export class NoteService {
   }
 
   addNote(note: Note): Observable<number> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'  //,
-        //'Authorization': 'my-auth-token'
-      })
-    };
-
     return this.http
         .post<number>(this.notesApi + '/add_note.php', note, httpOptions)
+        .pipe(catchError(this.handleError));
+  }
+
+  deleteNote(noteId: number): Observable<{}> {
+    const url = `${this.notesApi}/del_note.php?id=${noteId}`;
+    return this.http.delete(url, httpOptions)
         .pipe(catchError(this.handleError));
   }
 

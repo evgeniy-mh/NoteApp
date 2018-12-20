@@ -31,5 +31,12 @@ export class NotesComponent implements OnInit {
     this.noteService.getNotes().subscribe(notes => { this.notes = notes; });
   }
 
-  deleteNoteRequest(id): void { console.log(id); }
+  deleteNoteRequest(id: number): void {
+    const c = confirm('Удалить эту заметку?');
+    if (c) {
+      this.noteService.deleteNote(id).subscribe(res => {
+        this.notes.splice(this.notes.findIndex(note => note.idNote === id), 1);
+      });
+    }
+  }
 }
