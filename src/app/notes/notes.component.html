@@ -3,16 +3,14 @@
   <div class="row">
     <div class="col-sm">
       <h2>Мои заметки</h2>
-      <!-- <ul class="notes">
-        <li *ngFor="let note of notes">
-          <span class="badge">ID: {{note.idNote}}</span> {{note.noteName}}
-        </li>
-      </ul> -->
 
-      <div class="list-group notes">
-        <a *ngFor="let note of notes" href="#" class="list-group-item list-group-item-action">
+      <div class="list-group">
+        <!-- <a *ngFor="let note of notes" href="#" class="list-group-item list-group-item-action">
           <span class="badge">ID: {{note.idNote}}</span> {{note.noteName}}
-        </a>
+        </a> -->
+
+        <app-note *ngFor="let current_note of notes" [note]="current_note"></app-note>
+
       </div>
 
     </div>
