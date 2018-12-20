@@ -4,15 +4,16 @@ require 'find_note.php';
 
 $method = $_SERVER['REQUEST_METHOD'];
 if($method=='DELETE'){
-        $data = json_decode(file_get_contents('php://input'), true);
+        //$data = json_decode(file_get_contents('php://input'), true);
 
-        if(!array_key_exists('idNote',$data)){
-                echo ('idNote not specified');
-                exit;
-        }
-        $idNote=$data["idNote"];
-
-        try {
+        $idNote=array_key_exists('id',$_GET)? $_GET["id"]: null;
+        if(empty($idNote)){
+            http_response_code(500);
+            echo("id not specified");
+        }else{
+            echo($idNote);
+            
+            try {
                 $conn = new PDO("mysql:host=$servername;dbname=NotesDB", $username, $password);
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 
@@ -30,9 +31,9 @@ if($method=='DELETE'){
                         echo "Error: " . $e->getMessage();
                 }
                 $conn = null;
+        }
         }else{
                 http_response_code(500);
                 echo ('server method error');
-        }       
+        }        
 ?>
- 
