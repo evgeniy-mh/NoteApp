@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 
 <body>
@@ -11,6 +12,20 @@
         <div class="jumbotron">
             <h1 class="display-4">Простые заметки <span class="badge badge-secondary">v. 0.01</span></h1>
             <p class="lead">Просто заметки, ничего лишнего</p>
+        </div>
+
+        <p>
+            <button type="button" class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed"
+                [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+                Toggle
+            </button>
+        </p>
+        <div id="collapseExample" [ngbCollapse]="isCollapsed">
+            <div class="card">
+                <div class="card-body">
+                    You can collapse this card by clicking Toggle
+                </div>
+            </div>
         </div>
 
         <app-notes></app-notes>
