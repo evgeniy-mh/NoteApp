@@ -19,7 +19,8 @@ const httpOptions = {
 
 @Injectable({providedIn: 'root'})
 export class NoteService {
-  notesApi = '/api_local';
+  //notesApi = '/api_local';
+  notesApi = '/api';
 
   constructor(private http: HttpClient) {}
 
@@ -37,8 +38,11 @@ export class NoteService {
 
   deleteNote(noteId: number): Observable<{}> {
     const url = `${this.notesApi}/del_note.php?id=${noteId}`;
-    return this.http.delete(url, httpOptions)
-        .pipe(catchError(this.handleError));
+    // return this.http.delete(url, httpOptions)
+    //     .pipe(catchError(this.handleError));
+
+    // infinity free server does not support DELETE API
+    return this.http.get(url);
   }
 
   private handleError(error: HttpErrorResponse) {
