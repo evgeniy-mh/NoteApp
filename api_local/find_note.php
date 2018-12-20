@@ -4,7 +4,7 @@ function findNote($id){
     require 'server_params.php';
 
     try {
-        $conn = new PDO("mysql:host=$servername;dbname=NotesDB", $username, $password);
+        $conn = new PDO("mysql:host=$servername;dbname=$noteDbName", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
         $stmt = $conn->prepare("SELECT idNote FROM Notes WHERE idNote=$id");

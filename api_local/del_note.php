@@ -3,7 +3,7 @@ require 'server_params.php';
 require 'find_note.php';
 
 $method = $_SERVER['REQUEST_METHOD'];
-if($method=='DELETE'){
+if($method=='GET'){
         //$data = json_decode(file_get_contents('php://input'), true);
 
         $idNote=array_key_exists('id',$_GET)? $_GET["id"]: null;
@@ -14,7 +14,7 @@ if($method=='DELETE'){
             echo($idNote);
             
             try {
-                $conn = new PDO("mysql:host=$servername;dbname=NotesDB", $username, $password);
+                $conn = new PDO("mysql:host=$servername;dbname=$noteDbName", $username, $password);
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 
                 if(empty(findNote($idNote))){

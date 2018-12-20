@@ -10,7 +10,7 @@ if(array_key_exists('idUser',$data) && array_key_exists('noteName',$data)){
         $noteDate=array_key_exists('noteDate',$data)?$data["noteDate"]:null;
 
         try {
-                $conn = new PDO("mysql:host=$servername;dbname=NotesDB", $username, $password);
+                $conn = new PDO("mysql:host=$servername;dbname=$noteDbName", $username, $password);
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 
                 $stmt = $conn->prepare(
