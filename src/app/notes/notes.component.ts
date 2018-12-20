@@ -30,4 +30,6 @@ export class NotesComponent implements OnInit {
   getNotes(): void {
     this.noteService.getNotes().subscribe(notes => { this.notes = notes; });
   }
+
+  deleteNoteRequest(id): void { console.log(id); }
 }

@@ -9,7 +9,11 @@
           <span class="badge">ID: {{note.idNote}}</span> {{note.noteName}}
         </a> -->
 
-        <app-note *ngFor="let current_note of notes" [note]="current_note"></app-note>
+        <app-note 
+        *ngFor="let current_note of notes" 
+        [note]="current_note"
+        (deleteRequest)="deleteNoteRequest($event)"
+        ></app-note>
 
       </div>
 
