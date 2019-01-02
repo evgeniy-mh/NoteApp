@@ -19,8 +19,8 @@ const httpOptions = {
 
 @Injectable({providedIn: 'root'})
 export class NoteService {
-  notesApi = '/api_local';
-  //notesApi = '/api';
+  //notesApi = '/api_local';
+  notesApi = '/api';
 
   constructor(private http: HttpClient) {}
 
