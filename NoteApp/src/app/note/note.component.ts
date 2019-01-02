@@ -10,6 +10,8 @@ export class NoteComponent implements OnInit {
   @Input() note: Note;
   @Output() deleteRequest = new EventEmitter<number>();
 
+  public isCollapsed = true;
+
   constructor() {}
 
   ngOnInit() {}

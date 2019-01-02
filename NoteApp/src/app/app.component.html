@@ -12,21 +12,7 @@
         <div class="jumbotron">
             <h1 class="display-4">Простые заметки <span class="badge badge-secondary">v. 0.01</span></h1>
             <p class="lead">Просто заметки, ничего лишнего</p>
-        </div>
-
-        <p>
-            <button type="button" class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed"
-                [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
-                Toggle
-            </button>
-        </p>
-        <div id="collapseExample" [ngbCollapse]="isCollapsed">
-            <div class="card">
-                <div class="card-body">
-                    You can collapse this card by clicking Toggle
-                </div>
-            </div>
-        </div>
+        </div>   
 
         <app-notes></app-notes>
     </div>

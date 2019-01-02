@@ -1,4 +1,33 @@
-<a class="list-group-item list-group-item-action">
-  <span class="badge">ID: {{note.idNote}}</span> {{note.noteName}}
-</a> 
-<button (click)="deleteNote()" type="button" class="btn btn-outline-warning">Удалить</button>
+<div class="alert alert-primary" role="alert">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h2>{{note.noteName}}</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="card" *ngIf="note.noteContent">
+        <div class="card-body">
+          {{note.noteContent}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col">
+      <span class="badge badge-info">Дата создания: {{note.noteDate | date:'short'}}</span>
+    </div>
+
+    <div class="col">
+      <button type="button" class="btn btn-warning" (click)="deleteNote()">
+        Удалить заметку
+      </button>
+    </div>
+  </div>
+
+</div>
