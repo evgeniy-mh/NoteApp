@@ -1,11 +1,22 @@
 <?php
-require 'server_params.php';
+require_once 'server_params.php';
+require_once 'check_jwt.php';
+
+$headers = apache_request_headers();
+/*foreach ($headers as $key => $value) {
+    echo("$key: $value\n");
+}*/
+$jwt=$headers["authorization"];
+$jwt=substr($jwt,strlen("Bearer "));
+//echo($jwt);
+
+$userId=getUserId($jwt);
 
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$noteDbName", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
-$stmt = $conn->prepare("SELECT * FROM Notes");
+$stmt = $conn->prepare("SELECT * FROM `Notes` left join `User` ON `Notes`.`user_userId`=`User`.`userId` WHERE `User`.`userId`=$userId");
     $stmt->execute();
     
     $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
